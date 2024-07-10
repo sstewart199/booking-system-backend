@@ -8,11 +8,10 @@ const cors = require('cors');
 const { parseISO, parse, format, isValid } = require('date-fns');
 
 const app = express();
-const UIPORT = process.env.UIPORT || 3000;
 const APIPORT = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: `http://localhost:${UIPORT}`, // Replace with your frontend URL
+  origin: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_UI_URL : process.env.DEVELOPMENT_UI_URL, // Replace with your frontend URL
   credentials: true,
   exposedHeaders: ['X-New-Token']
 }));
