@@ -297,7 +297,7 @@ app.get('/users', authenticateToken, (req, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  db.get('SELECT * FROM users WHERE username = ?', [username], (err, user) => {
+  db.get('SELECT * FROM users WHERE username = ? COLLATE NOCASE', [username], (err, user) => {
     if (err) {
       return res.status(500).json({ message: 'Login failed' });
     }
