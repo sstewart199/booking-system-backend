@@ -18,6 +18,9 @@ app.use(cors({
 
 app.use(express.json());
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK' });
+});
 
 const db = new sqlite3.Database(process.env.DATABASE_URL);
 const SECRET_KEY = process.env.JWT_SECRET; // Replace with your secret key
